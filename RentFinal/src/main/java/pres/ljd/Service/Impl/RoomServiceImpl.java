@@ -32,5 +32,11 @@ public class RoomServiceImpl implements RoomService {
         return room;
     }
 
+    @Override
+    public void addRoom(Room room) {
+        System.out.println("业务层：新增房间");
+        roomDao.addRoom(room);
+    }
+
 }
 

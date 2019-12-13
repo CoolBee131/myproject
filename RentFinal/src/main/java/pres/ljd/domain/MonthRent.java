@@ -6,21 +6,13 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class MonthRent implements Serializable {
 	private Integer rid ;
-	private Date month ;
+	private String month ;
 	private Double rent ;
 	private Integer wpn ;
 	private Integer epn ;
 	private Date date ;
 
 	public MonthRent() {}
-	public MonthRent(Integer rid, Date month, Double rent, Integer wpn, Integer epn, Date date) {
-		this.rid = rid ;
-		this.month =  month ;
-		this.rent = rent ;
-		this.wpn = wpn ;
-		this.epn = epn ;
-		this.date = date ;
-	}
 
 	public Integer getRid() {
 		return rid;
@@ -30,11 +22,11 @@ public class MonthRent implements Serializable {
 		this.rid = rid;
 	}
 
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 

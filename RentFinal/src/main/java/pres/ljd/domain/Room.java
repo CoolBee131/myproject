@@ -8,8 +8,10 @@ public class Room implements Serializable{
 	private Integer id ;
 	private String rname ;
 	private String tenant ;
-	private Integer phonenum ;
-	private Date checkindate ;
+	private String phonenum ;
+	private Date date ;
+
+	public Room() {}
 
 	public Integer getId() {
 		return id;
@@ -35,20 +37,20 @@ public class Room implements Serializable{
 		this.tenant = tenant;
 	}
 
-	public Integer getPhonenum() {
+	public String getPhonenum() {
 		return phonenum;
 	}
 
-	public void setPhonenum(Integer phonenum) {
+	public void setPhonenum(String phonenum) {
 		this.phonenum = phonenum;
 	}
 
-	public Date getCheckindate() {
-		return checkindate;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setCheckindate(Date checkindate) {
-		this.checkindate = checkindate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
@@ -58,7 +60,7 @@ public class Room implements Serializable{
 				", rname='" + rname + '\'' +
 				", tenant='" + tenant + '\'' +
 				", phonenum=" + phonenum +
-				", checkindate=" + checkindate +
+				", date=" + date +
 				'}';
 	}
 }

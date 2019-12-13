@@ -3,7 +3,10 @@ package pres.ljd.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import pres.ljd.Service.MonthRentService;
 import pres.ljd.Service.RoomService;
 import pres.ljd.domain.MonthRent;
@@ -13,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller("roomController")
-@RequestMapping("/Room")
+@RequestMapping("/room")
 public class RoomController {
 
     private final RoomService roomService ;
@@ -26,43 +29,37 @@ public class RoomController {
         this.monthRentService = monthRentService;
     }
 
-    @RequestMapping("/findAll")
-    public String findAll() {
+    /**
+     * 实现查找所有房间信息
+     * @return 跳转到"roomMessage"并返回list
+     */
+    @RequestMapping("/findAllRoom")
+    public ModelAndView findAllRoom() {
         System.out.println("表现层：查找所有房间信息");
-        roomService.findAll() ;
-        return null;
+        List<Room> rooms = roomService.findAll() ;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("roomMessage");
+        modelAndView.addObject("rooms",rooms);
+        return modelAndView;
     }
 
-    @RequestMapping("find")
-    public String find(String rname, Date month, Model model){
-        if(rname == null&month!=null){
-            List<MonthRent> monthRents = monthRentService.findByMonth(month);
-            int size = monthRents.size();
-            for (MonthRent monthRent:monthRents){
-                for (int x = 1;x <= size;x++)
-                model.addAttribute("x",monthRent);
-            }
-            model.addAttribute("size",size);
-            return "selectresult";
-        }else if (month == null&&rname!=null){
-            Room room = roomService.findByRname(rname);
-            List<MonthRent> monthRents = monthRentService.findByRid(room.getId());
-            int size = monthRents.size();
-            for (MonthRent monthRent:monthRents){
-                for (int x = 1;x <= size;x++)
-                    model.addAttribute("x",monthRent);
-            }
-            model.addAttribute("size",size);
-            return "selectresult";
-        }else if (month == null&&rname==null){
-            return "error";
-        }else {
-            Room room = roomService.findByRname(rname);
-            MonthRent monthRent = monthRentService.findOne(room.getId(),month);
-            model.addAttribute(monthRent) ;
-            return "selectresult";
-        }
 
+
+    @RequestMapping("/addRoom")
+    public String addRoom(@RequestBody Room room){
+        if(!room.getRname().isEmpty()){
+            roomService.addRoom(room);
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping("/addRent")
+    public String addRent(@RequestBody MonthRent monthRent){
+        System.out.println(monthRent);
+        monthRentService.addMonthRent(monthRent);
+        return "success";
     }
 
 }

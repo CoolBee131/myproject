@@ -11,9 +11,9 @@
     <title>租金系统</title>
 </head>
 <body>
-    <input type="button" name="btnAdd" onclick="javascript:window.location.href='home/roomMessage'" value="房间信息" /><<br>
-    <input type="button" name="btnAdd" onclick="javascript:window.location.href='home/addRent'" value="添加房租信息" /><<br>
-    <input type="button" name="btnAdd" onclick="javascript:window.location.href='home/addRoom'" value="增加新房间" /><<br>
-    <input type="button" name="btnAdd" onclick="javascript:window.location.href='home/select'" value="查找" /><<br>
+    <input type="button" onclick="location.href='room/findAllRoom'" value="房间信息" /><br>
+    <input type="button" onclick="location.href='home/addRent'" value="添加房租信息" /><br>
+    <input type="button" onclick="location.href='home/addRoom'" value="增加新房间" /><br>
+    <input type="button" onclick="location.href='home/select'" value="查找" /><br>
 </body>
 </html>
